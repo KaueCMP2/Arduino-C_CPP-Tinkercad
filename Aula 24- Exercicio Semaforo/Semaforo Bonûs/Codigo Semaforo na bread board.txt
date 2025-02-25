@@ -1,0 +1,67 @@
+/*
+  Kaue Sergio
+  Código desafio semáforo
+*/
+
+// Definição dos pinos para os LEDs do primeiro semáforo
+#define pinLED_Verd 13   // LED verde do primeiro semáforo conectado no pino 13
+#define pinLED_Amrl 12   // LED amarelo do primeiro semáforo conectado no pino 12
+#define pinLED_Verm 11   // LED vermelho do primeiro semáforo conectado no pino 11
+
+// Definição dos pinos para os LEDs do segundo semáforo
+#define pinLED_Verd2 7   // LED verde do segundo semáforo conectado no pino 7
+#define pinLED_Amrl2 6   // LED amarelo do segundo semáforo conectado no pino 6
+#define pinLED_Verm2 5   // LED vermelho do segundo semáforo conectado no pino 5
+
+// Definição dos tempos de espera para cada cor (em milissegundos)
+#define tempOFF_V 3000    // Tempo para o LED verde (3000 ms = 3 segundos)
+#define tempOFF_A 2000    // Tempo para o LED amarelo (2000 ms = 2 segundos)
+#define tempOFF_Verm 5000 // Tempo para o LED vermelho (5000 ms = 5 segundos)
+
+void setup() {
+  // Configura os pinos dos LEDs do primeiro semáforo como saídas
+  pinMode(pinLED_Verd, OUTPUT);
+  pinMode(pinLED_Amrl, OUTPUT);
+  pinMode(pinLED_Verm, OUTPUT);
+  
+  // Configura os pinos dos LEDs do segundo semáforo como saídas
+  pinMode(pinLED_Verd2, OUTPUT);
+  pinMode(pinLED_Amrl2, OUTPUT);
+  pinMode(pinLED_Verm2, OUTPUT);
+}
+
+void loop() {
+  // Sequência para o primeiro semáforo
+  
+  // Acende o LED verde do primeiro semáforo
+  digitalWrite(pinLED_Verd, HIGH);
+  delay(tempOFF_V);       // Aguarda 3 segundos
+  digitalWrite(pinLED_Verd, LOW);
+  
+  // Acende o LED amarelo do primeiro semáforo
+  digitalWrite(pinLED_Amrl, HIGH);
+  delay(tempOFF_A);       // Aguarda 2 segundos
+  digitalWrite(pinLED_Amrl, LOW);
+  
+  // Acende o LED vermelho do primeiro semáforo
+  digitalWrite(pinLED_Verm, HIGH);
+  delay(tempOFF_Verm);    // Aguarda 5 segundos
+  digitalWrite(pinLED_Verm, LOW);
+  
+  // Sequência para o segundo semáforo
+  
+  // Acende o LED verde do segundo semáforo
+  digitalWrite(pinLED_Verd2, HIGH);
+  delay(tempOFF_V);       // Aguarda 3 segundos
+  digitalWrite(pinLED_Verd2, LOW);
+  
+  // Acende o LED amarelo do segundo semáforo
+  digitalWrite(pinLED_Amrl2, HIGH);
+  delay(tempOFF_A);       // Aguarda 2 segundos
+  digitalWrite(pinLED_Amrl2, LOW);
+  
+  // Acende o LED vermelho do segundo semáforo
+  digitalWrite(pinLED_Verm2, HIGH);
+  delay(tempOFF_Verm);    // Aguarda 5 segundos
+  digitalWrite(pinLED_Verm2, LOW);
+}

@@ -1,0 +1,59 @@
+bool test = 'a';  // 'a' tem valor ASCII 97, será convertido para true (1)
+unsigned int numero = 400;  
+
+void setup() {   
+    Serial.begin(9600);   
+    Serial.println("Tamanhos dos tipos de variáveis em bytes");   
+
+    Serial.print("bool: "); 
+    Serial.println(sizeof(bool)); // Normalmente 1 byte (true ou false)  
+
+    Serial.print("char: "); 
+    Serial.println(sizeof(char)); // Normalmente 1 byte (0 a 255 caracteres)  
+
+    Serial.print("byte: "); 
+    Serial.println(sizeof(byte)); // Normalmente 1 byte (0 a 255)  
+
+    Serial.print("int: "); 
+    Serial.println(sizeof(int)); // Normalmente 2 bytes no Arduino (−32.768 a 32.767)  
+
+    Serial.print("unsigned int: "); 
+    Serial.println(sizeof(unsigned int)); // Normalmente 2 bytes no Arduino (0 a 65.535)  
+
+    Serial.print("long: "); 
+    Serial.println(sizeof(long)); // Normalmente 4 bytes no Arduino (−2.147.483.648 a 2.147.483.647)  
+
+    Serial.print("unsigned long: "); 
+    Serial.println(sizeof(unsigned long)); // Normalmente 4 bytes no Arduino (0 a 4.294.967.295)  
+
+    Serial.print("double:"); 
+    Serial.println(sizeof(double)); // No Arduino, geralmente tem o mesmo tamanho que float (4 bytes)  
+
+    Serial.print(test); // Irá imprimir '1' pois 'a' é convertido para true  
+
+    Serial.print("int8_t: "); 
+    Serial.println(sizeof(int8_t)); // 1 byte (-128 a 127)  
+
+    Serial.print("uint8_t: "); 
+    Serial.println(sizeof(uint8_t)); // 1 byte (0 a 255)  
+
+    Serial.print("int16_t: "); 
+    Serial.println(sizeof(int16_t)); // 2 bytes (-32.768 a 32.767)  
+
+    Serial.print("uint16_t: "); 
+    Serial.println(sizeof(uint16_t)); // 2 bytes (0 a 65.535)  
+
+    Serial.print("int32_t: "); 
+    Serial.println(sizeof(int32_t)); // 4 bytes (-2.147.483.648 a 2.147.483.647)  
+
+    Serial.print("uint32_t: "); 
+    Serial.println(sizeof(uint32_t)); // 4 bytes (0 a 4.294.967.295)  
+
+    Serial.print("int64_t: "); 
+    Serial.println(sizeof(int64_t)); // No Arduino AVR, int64_t pode não estar disponível  
+
+    Serial.print("uint64_t: "); 
+    Serial.println(sizeof(uint64_t)); // No Arduino AVR, uint64_t pode não estar disponível  
+}  
+
+void loop() { }  

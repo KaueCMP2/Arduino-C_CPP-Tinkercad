@@ -1,0 +1,21 @@
+float valor = 250;
+float deMenor = 0;
+float deMaior = 1000;
+float paraMenor = 500;
+float paraMaior = 750;
+
+void setup() {
+  Serial.begin(9600);
+
+  //Formula
+  float resultado = (valor - deMenor) * (paraMaior - paraMenor) / (deMaior - deMenor) + paraMenor;
+
+  Serial.print("Valor inicial de: ");
+  Serial.println(valor);
+  Serial.print("Valor mapeado: ");
+  Serial.println(resultado);
+}
+
+void loop() 
+{
+}

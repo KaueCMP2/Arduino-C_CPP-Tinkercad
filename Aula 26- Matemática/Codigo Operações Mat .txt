@@ -1,0 +1,99 @@
+int numeroA = 10;
+int numeroB = 5;
+int resultado = 0;
+float resultadoReal = 0;
+  
+void setup()
+{
+  
+Serial.begin(9600);
+  //*****SOMA*****
+resultado = numeroA + numeroB;
+Serial.print("A soma do numero A com o numero B eh: ");
+Serial.println(resultado);
+  
+//******SUBTRÇÃO******
+resultado = numeroA - numeroB;
+Serial.print("A subtracao de B pelo A: ");
+Serial.println(resultado);
+  
+//******MULTIPLICACAO******
+resultado = numeroA * numeroB;
+Serial.print ("A multiplicacao de A e B eh: ");
+Serial.println (resultado);  
+  
+//******DIVISAO******
+resultado = numeroA/numeroB;
+Serial.print("Divisao de A e B eh: ");
+Serial.print (resultado);
+resultado = numeroA % numeroB;
+Serial.print(" E sobra: ");
+Serial.print (resultado);  
+resultadoReal = (float)numeroA / (float)numeroB;
+Serial.print (" Ou: ");
+Serial.println(resultadoReal, 1); //limita a impressao do resultado
+                                //em uma casa decimal
+
+//******POTENCIA******
+resultado = pow(numeroA, numeroB); //'numeroA' elevado a 'numeroB'
+Serial.print("Numero A elevado a numero B eh: ");
+Serial.print(resultado);
+  
+//******QUADRADO******
+resultado = sq(numeroA); //numeroA elevado ao quadrado
+Serial.println(" Numero A elevado ao quadrado eh: ");
+Serial.print(resultado);
+  
+//******RAIZ QUADRADA******
+resultadoReal = sqrt(numeroA);
+Serial.println("A raiz quadrada de numero A eh: ");
+Serial.print(resultado);
+  
+//******MODULO******
+resultado = abs(numeroA * -1);
+Serial.print(resultado); 
+//******RESTRICAO******
+resultado = constrain(numeroA,-3, 5); //restinge a variavel numero A aos
+                                      //limites -3 e 5
+  
+Serial.println(resultado);
+  
+//******REMAPEAMENTO******
+resultado = map(numeroA, 0, 20, 0, 10); 
+//map(valor,deMenor,deMaior, paraMenor, paraMaior)
+Serial.print(resultado);
+
+//******OPERADORES DE ATIBUICAO******
+  
+//numeroA = numeroA +5;
+Serial.println(numeroA += 5);
+
+//nuemroA = numeroA
+Serial.print (numeroA -=5);
+
+//numeroA = numero * 2;
+Serial.print (numeroA *=2);
+
+//numeroA = numeroA / 2;
+Serial.print(numeroA /2);
+  
+//INCREMENTAR A VARIAVEL
+  
+//numeroA = numeroA +1;
+Serial.println (numeroA++);//pos incremento
+  Serial.println (numeroA);
+Serial.println (numeroA); //pre incremento
+
+//DECREMENTAR A VARIAL
+//numeroA = numeroA -1;
+Serial.println (numeroA--);//pos incremento
+  Serial.println (numeroA);
+Serial.println (--numeroA);//pre incremento
+
+
+}
+
+void loop()
+{
+  
+}

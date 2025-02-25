@@ -1,0 +1,80 @@
+/*
+KaueCMP
+Semáforo com lEDs
+*/
+
+//Pinos LEDs (Grupo 1)
+#define pinLED_Verde 13 //pino LED verde 
+#define pinLED_Amarelo 12 //Pino LED Amarela
+#define pinLED_Verm 11 //Pino LED Vermelha 
+
+//Pino LEDs (Grupo 2)
+#define pinLED_Verde2 7 //pino LED verde 2
+#define pinLED_Amarelo2 6 //Pino LED Amarela 2
+#define pinLED_Verm2 5 //Pino LED Vermelha 2
+  
+ //Tempo LEDs Ligadas(em milisegundos)
+#define tempON_Verde 3000 //Tempo ligado do LED Verde 
+#define tempON_Amarelo 2000 //Tempo Ligado do LED Amarelo
+#define tempON_Verm 5000 //Tempo ligado do LeD Vermelho
+  
+//Tempo LEDs 2 Ligadas
+#define tempON_Verde2 3000 //Tempo ligado do LED Verde 2
+#define tempON_Amarelo2 2000 //Tempo Ligado do LED Amarelo 2
+#define tempON_Verm2 5000 //Tempo ligado do LeD Vermelho 2
+
+
+void setup () 
+  
+{
+  
+//Inicializa pinos como saída
+pinMode (pinLED_Verde, OUTPUT); 
+pinMode (pinLED_Amarelo,OUTPUT);
+pinMode (pinLED_Verm, OUTPUT);
+pinMode (pinLED_Verde2,OUTPUT);
+pinMode (pinLED_Amarelo2, OUTPUT);
+pinMode (pinLED_Verm2, OUTPUT);
+
+}
+
+void loop () 
+  
+{
+   //Ciclo led Verde
+  digitalWrite(pinLED_Verde, HIGH); 
+   delay(tempON_Verde); 
+  digitalWrite(pinLED_Verde, LOW);
+
+  //Ciclo led Amarelo
+  digitalWrite(pinLED_Amarelo, HIGH);
+   delay(tempON_Amarelo);
+  digitalWrite(pinLED_Amarelo, LOW);
+  
+  //Ciclo led Vermelho
+  digitalWrite(pinLED_Verm, HIGH);
+   delay(tempON_Verm);
+  digitalWrite(pinLED_Verm, LOW);
+
+  //Tempo para inicio do Segundo Ciclo   
+  delay(1000); 
+  
+   //Ciclo led Verde 2
+  digitalWrite(pinLED_Verde2, HIGH);
+   delay(tempON_Verde2);
+  digitalWrite(pinLED_Verde2,LOW);
+
+  //Ciclo led Amarelo 2
+  digitalWrite(pinLED_Amarelo2, HIGH);
+   delay(tempON_Amarelo2);
+  digitalWrite(pinLED_Amarelo2,LOW);
+ 
+   //Ciclo led Vermelho 2
+  digitalWrite(pinLED_Verm2, HIGH);
+   delay(tempON_Verm2);
+  digitalWrite(pinLED_Verm2, LOW);
+  
+  //Tempo para reinício dos ciclos
+  delay(1000);
+  
+}

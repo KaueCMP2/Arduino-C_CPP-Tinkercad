@@ -1,0 +1,48 @@
+// C++ code
+// Exercício para calcular o Índice de Massa Corporal (IMC)
+
+// Declaração e inicialização das variáveis
+float peso = 90;        // Peso em quilogramas (kg)
+float altura = 1.90;    // Altura em metros (m)
+float imc = 0;          // Variável para armazenar o valor do IMC (inicialmente 0)
+float resultado2 = 0;   // Variável declarada, mas não está sendo utilizada
+
+void setup() {
+  // Inicializa a comunicação serial a 9600 bps para exibir resultados no monitor serial
+  Serial.begin(9600);
+  
+  // Calcula o IMC usando a fórmula: peso dividido pelo quadrado da altura
+  imc = peso / (altura * altura);
+  
+  // Exibe o valor do IMC no monitor serial
+  Serial.print("IMC: ");
+  Serial.println(imc);
+  
+  // Verifica em qual faixa o IMC se encontra e exibe a mensagem correspondente
+  
+  // Se o IMC for menor ou igual a 19.1, indica que está abaixo do peso
+  if(imc <= 19.1) {
+    Serial.println("Ta abaixo");
+    
+  // Se o IMC estiver entre 19.2 e 25.8, indica que está na média
+  } else if(imc >= 19.2 & imc <= 25.8) { // OBS.: Recomenda-se usar o operador lógico && em vez de &
+    Serial.println("Na media");
+    
+  // Se o IMC estiver entre 25.9 e 27.3, indica que está um pouco acima do peso
+  } else if(imc >= 25.9 & imc <= 27.3) { // OBS.: Recomenda-se usar && em vez de &
+    Serial.println("Pouco acima");
+    
+  // Se o IMC estiver entre 27.4 e 32,3, indica que está acima do peso
+  } else if(imc >= 27.4 & imc <= 32,3) { // OBS.: 
+    // O número "32,3" deve ser escrito como 32.3 e é recomendado usar && em vez de &
+    Serial.println("Acima ");
+    
+  // Esta condição é idêntica à anterior e, portanto, é redundante
+  } else if(imc >= 27.4 & imc <= 32,3) {
+    Serial.println("Muito acima ");
+  }
+}
+
+void loop() {
+  // Loop vazio, pois o cálculo e a exibição do IMC são realizados apenas uma vez no setup()
+}
