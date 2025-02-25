@@ -1,0 +1,60 @@
+// c++ code
+
+
+// **** operacoes de comparacao ****
+
+// == verifica se dois valores sao iguais
+// != verifica se dois valores sao diferentes
+// <  verifica se um valor e menor que
+// > verifica se um valor e maior que
+// <= verifica se e menor ou igual
+// >= verifica se e maior ou igual
+
+                   //verdadeiro ---> execulta
+                   //falso ---> nao execulta
+
+int temperatura = 18;
+
+                   //verdadeiro ---> execulta
+                   //falso ---> nao execulta
+void setup()
+ {
+  Serial.begin (9600);
+  if (temperatura >= 30) {
+    Serial.println(" CALOR DO JABO!!! ");
+    
+ 
+  }else if(temperatura >=24 & temperatura >=18) {
+   Serial.println("Praia na certa!!! ");
+    
+   }else if (temperatura <=24 & temperatura >=6) {
+    Serial.println("Coberta + serie!!! ");
+  
+  }else {
+   Serial.println("FRIO DA DESGRACA!!!");
+    
+  }bool portaAberta = true;
+  
+  //if(portaAberta == true){
+  if(portaAberta == true;) {
+    Serial.println("Porta Aberta");
+    
+  }else{
+   if(!portaAberta == false;) {
+    Serial.println("porta Fechada");
+    
+    
+    
+    //if(portaAberta){
+}*/
+ int umidade = 65;
+  // && = e, || = ou
+  if(temperatura < 12 && umidade > 70 ) {
+  Serial.println("Alerta");
+}
+ }
+  
+void loop()
+{
+ 
+}
