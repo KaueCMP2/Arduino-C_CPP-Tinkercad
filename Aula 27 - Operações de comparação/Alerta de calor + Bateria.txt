@@ -1,0 +1,38 @@
+// C++ code
+//
+#define pinLed_Verd 13
+#define pinLed_Azul 10
+#define pinLed_Verm 8
+
+int temperatura = 29;
+int bateria = 45;
+
+void setup()
+{
+ Serial.begin(9600);
+  
+  pinMode(pinLed_Verd, OUTPUT);
+  pinMode(pinLed_Azul, OUTPUT);
+  pinMode(pinLed_Verm, OUTPUT);
+  
+  if(temperatura >= 30){
+  digitalWrite(pinLed_Verd, HIGH);
+  Serial.println("Alerta de Calor!!!");
+  
+  }else if(temperatura <= 29){
+  digitalWrite(pinLed_Verd, LOW);
+  Serial.println("Temperatura normal!");
+    
+  }if (bateria <=20){
+  digitalWrite(pinLed_Verm, HIGH);
+  Serial.print("bateria muito baixa!!!");
+      
+  }else if(bateria >=21 & bateria <=80){
+  digitalWrite(pinLed_Azul, HIGH);
+  Serial.print("bateria baixa!!!");
+ }
+}
+
+void loop()
+{
+}

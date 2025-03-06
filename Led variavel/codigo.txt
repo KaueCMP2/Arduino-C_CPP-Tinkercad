@@ -1,0 +1,54 @@
+// C++ code
+//
+#define pinLed_Verm 13
+#define pinLed_Amar 12
+#define pinLed_Lar 11
+#define pinLed_Azul 10
+#define pinLed_Branc 9
+ int valor = 5;
+
+void setup()
+{
+ Serial.begin(9600); //velocidade de comunicacao com o munitor
+  
+  pinMode(pinLed_Verm , OUTPUT);
+  pinMode(pinLed_Amar, OUTPUT);
+  pinMode(pinLed_Lar, OUTPUT);
+  pinMode(pinLed_Azul, OUTPUT);
+  pinMode(pinLed_Branc, OUTPUT);
+
+  switch(valor){     
+ case 1: //caso seja a opcao 1 ligar led vermelho
+  digitalWrite(pinLed_Verm, HIGH);
+    Serial.println("led vermelho ligado");
+ break;
+ 
+ case 2: //caso seja a opcao 2 ligar led amarelo
+  digitalWrite(pinLed_Amar, HIGH);
+    Serial.println("led amarelo ligado");
+ break;
+    
+ case 3: //caso seja a opcao 3 ligar led laranja
+  digitalWrite(pinLed_Lar, HIGH);
+    Serial.println("led laranja ligado");
+ break;
+    
+ case 4: //caso seja a opcao 4 ligar led azul
+  digitalWrite(pinLed_Azul, HIGH);
+    Serial.println("led azul ligado");
+ break;
+    
+ case 5: //caso seja a opcao 5 ligar led branco
+  digitalWrite(pinLed_Branc, HIGH);
+    Serial.println("led branco ligado");
+ break;
+ 
+    default: //caso nao for nenhum dos acima...
+     Serial.print("Erro na verificacao do valor");
+    break;
+  }
+}
+
+void loop(){
+
+}

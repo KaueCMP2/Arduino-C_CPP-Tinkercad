@@ -1,0 +1,30 @@
+const int pinLed = 13; // Define em que pino o led esta conectado
+
+void setup() {  
+  pinMode(pinLed, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop()
+{
+ int valor = 1024; //valor a ser usado no processo
+  
+ // Converte o valor(fixo) para a faixa de 20 a 80
+  int novoValor = map(valor, 0, 1023, 50, 80);
+  
+  if(novoValor >=20 & novoValor <=80){
+    digitalWrite(pinLed, HIGH);
+   Serial.print("valor convertido:");
+    Serial.println(novoValor);
+   Serial.println("Led ON");
+    
+  
+  }else {
+   digitalWrite(pinLed, LOW);
+  Serial.println("valor não correspondente!!!");
+   Serial.println(" Led OFF");   
+   
+     
+   } delay(5000);
+  
+  }

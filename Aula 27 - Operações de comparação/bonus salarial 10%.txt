@@ -1,0 +1,30 @@
+// Definição das variáveis
+float valor = 900;  // Número a ser verificado como par ou ímpar
+float valorNovo = 0; //valor apos o calculo
+float valorTotal = 0;
+
+void setup()
+{  
+  Serial.begin(9600);
+  
+   if(valor <= 1000){
+   valorNovo = (valor*10 /100);
+   valorTotal = (valorNovo + valor);
+   Serial.print("O salario do Joca eh R$ ");
+   Serial.print( valor);
+   Serial.print(" e o bonus eh R$");
+   Serial.println( valorNovo);
+   Serial.print("Ou seja R$");
+   Serial.println( valorTotal);
+     
+  }else{
+   Serial.print("O salário do joca eh R$ ");
+   Serial.print( valor);
+  }
+  
+  delay(5000);
+}
+
+void loop(){
+ 
+}

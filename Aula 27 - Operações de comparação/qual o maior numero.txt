@@ -1,0 +1,22 @@
+// Definição das variáveis
+float valor = 500;  // Número a ser verificado como par ou ímpar
+float valor2 = 1000;
+
+void setup()
+{  
+  Serial.begin(9600);
+  
+   if(valor < valor2){
+   Serial.print("valor 1 e menor que o valor 2");
+     
+   }else{
+   Serial.print("o valor 1 e maior que o valor 2");
+   Serial.print( valor);
+  }
+  
+  delay(5000);
+}
+
+void loop(){
+ 
+}

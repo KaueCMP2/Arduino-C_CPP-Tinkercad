@@ -1,0 +1,27 @@
+// C++ code
+//
+
+#define pinLed13 13
+int temperatura = 31 ;
+
+
+void setup()
+{
+ Serial.begin(9600);
+  
+  pinMode(pinLed13, OUTPUT);
+  
+  if(temperatura >= 30){
+  digitalWrite(pinLed13, LOW);
+  Serial.println("Alerta de CALOR!!!");
+  
+  }else if(temperatura <= 29){
+  digitalWrite(pinLed13, LOW);
+  Serial.println("Temperatura Padrao");
+  }
+}
+
+void loop()
+{
+
+}

@@ -1,0 +1,32 @@
+// Definição das variáveis
+const int pinLed_Par = 13;  // Pino onde o LED par está conectado
+const int pinLed_Imp = 10;   // Pino onde o LED impar está conectado
+int numero = 4;  // Número a ser verificado como par ou ímpar
+
+
+void setup()
+{  
+  pinMode(pinLed_Par, OUTPUT);
+  pinMode(pinLed_Imp, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop()
+{
+  if(numero % 2 == 0){
+    digitalWrite(pinLed_Par, HIGH);
+   Serial.print("O numero ");
+    Serial.print( numero);
+   Serial.println(" e par");
+    
+   }else{
+    digitalWrite(pinLed_Imp, HIGH);
+    Serial.print("O numero");
+     Serial.print( numero);
+    Serial.print("e impar");
+    }
+  
+  delay(5000);
+  
+   
+  }

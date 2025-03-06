@@ -1,0 +1,22 @@
+// Definição das variáveis
+float nota1 = 8;  // Número a ser verificado como par ou ímpar
+float nota2 = 9;
+float nota3 = 10;
+float nota4 = 8;
+float somaNota = 0;
+float notaGeral = 0;
+
+void setup()
+{  
+ Serial.begin(9600);
+  
+  somaNota = (nota1 + nota2 + nota3 + nota4);
+   notaGeral = (somaNota/4);
+  Serial.print("A media do aluno eh ");
+  Serial.println(notaGeral);
+
+}
+
+void loop(){
+ 
+}
