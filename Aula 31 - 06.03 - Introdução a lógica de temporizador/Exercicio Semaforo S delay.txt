@@ -1,0 +1,79 @@
+/*KaueCMP
+Semaforo sem delay
+
+Neste codigo eu tentei fazer 
+um semaforo sem a função delay...*/
+
+
+//define a entrada em que cada led esta conectado
+#define pinLed_verd 13 //define a entrada do led verde
+#define pinLed_amarl 12 //define a entrada do led amarelo
+#define pinLed_verm 10 //define a entrada do led vermelho
+
+//define os tempos em que cada led ficara ligado
+#define tempoVerde 3000 //define o tepo do led verde
+#define tempoAmarelo 2000 //define o tempo do led amarelo
+#define tempoVermelho 5000 //define o tempo do led vermelho
+
+unsigned long tempoAtual = 0;  //define o tempo atual
+unsigned long tempoInicial = 0;  // define o tempo inicial 
+
+char faseSemaforo = 0; //define a fase do semaforo
+
+void setup()
+{
+  pinMode(pinLed_verd, OUTPUT); //define o led verde como ponto de comunicação
+  pinMode(pinLed_amarl, OUTPUT); //define o led amarelo como ponto de comunicação
+  pinMode(pinLed_verm,OUTPUT); //define o led vermelho como ponto de comunicação
+  Serial.begin(9600); //define a velocidade da comunicação com o moitor serial
+  
+  tempoInicial = millis();
+}
+
+void loop()
+{  
+tempoAtual = millis();//atualiza o tempo atual
+    
+ 
+ if (faseSemaforo == 0){
+ digitalWrite(pinLed_verd, HIGH); //liga o led verd
+ digitalWrite(pinLed_amarl, LOW); //desliga o led amarelo
+ digitalWrite(pinLed_verm, LOW); //desliga o led vermelho
+  
+if(tempoAtual - tempoInicial >= tempoVerde){ 
+faseSemaforo = 1; //proxima fase do semaforo
+tempoInicial = millis(); //atualiza o tempo inicial
+ } 
+}
+ if (faseSemaforo == 1){
+ digitalWrite(pinLed_verd, LOW); //desliga o led verd
+ digitalWrite(pinLed_amarl, HIGH); //liga o led amarelo
+ digitalWrite(pinLed_verm, LOW); //desliga o led vermelho
+  
+if (tempoAtual - tempoInicial >= tempoAmarelo){
+faseSemaforo = 2;//proxima fase do semaforo
+tempoInicial = millis();//atualiza o tempo inicial
+ }  
+}
+ if (faseSemaforo == 2) {
+ digitalWrite(pinLed_verd, LOW); //desliga o led verd
+ digitalWrite(pinLed_amarl, LOW); //desliga o led amarelo
+ digitalWrite(pinLed_verm, HIGH); //liga o led vermelho
+ 
+if(tempoAtual - tempoInicial >= tempoVermelho){
+faseSemaforo = 0; //volta para a fase 0 do semaforo
+tempoInicial = millis();//atualiza o tempo inicial
+  }
+ }
+}  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

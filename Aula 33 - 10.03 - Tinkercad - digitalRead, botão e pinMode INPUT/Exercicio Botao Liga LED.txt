@@ -1,0 +1,30 @@
+//Botao liga LED
+
+const int pinLed = 10;      // Pino do LED
+const int pinBotao = 13;    // Pino do botão
+bool estadoAnteriorBotao = HIGH;  // Estado inicial do botão
+int contador = 0;           // Contador de cliques (int, pois precisa contar mais que 0 e 1)
+
+void setup() {
+  Serial.begin(9600);       // Inicia comunicação serial
+  pinMode(pinLed, OUTPUT);  // Define LED como saída
+  pinMode(pinBotao, INPUT_PULLUP); // Define botão como entrada (com resistor pull-up interno)
+}
+
+void loop() {
+  bool estadoAtualBotao = digitalRead(pinBotao); // Lê o estado do botão
+  
+  // Detecta quando o botão foi pressionado (transição de HIGH para LOW)
+  if (estadoAnteriorBotao == HIGH && estadoAtualBotao == LOW) {
+    contador++; // Incrementa o contador
+    Serial.print("O nUmero E: "); 
+    Serial.println(contador); // Exibe o número no Monitor Serial
+
+    // Faz o LED piscar
+    digitalWrite(pinLed, HIGH);
+    delay(200);
+    digitalWrite(pinLed, LOW);
+  }
+
+  estadoAnteriorBotao = estadoAtualBotao; // Atualiza o estado do botão
+}

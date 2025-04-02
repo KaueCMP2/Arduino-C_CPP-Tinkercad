@@ -1,0 +1,30 @@
+/*
+Autor: KaueCMP
+
+Titulo: hello world
+
+Desc: Meu codigo em arduino.
+            Pisca o pino 13
+
+Dat:19/02/2025
+*/
+
+#define pinLED 13
+#define Temp_ON 250
+#define Temp_OFF 100
+
+void setup ()   // inicia o 
+
+{
+ pinMode(pinLED,OUTPUT); //aciona o pino como saida
+ 
+}
+
+void loop () //acionado uma funcaorepete ela
+
+{
+  digitalWrite(pinLED, HIGH);//aciona o led
+  delay(Temp_ON); //faz o led piscar a cada 1seg
+  digitalWrite(pinLED, LOW); //desliga o led
+  delay(Temp_OFF); //religa a cada 1seg
+}

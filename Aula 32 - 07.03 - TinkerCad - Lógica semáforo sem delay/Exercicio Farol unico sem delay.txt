@@ -1,0 +1,65 @@
+//Farol unico
+
+#define pinLedVerde 11
+#define pinLedAmarelo 12
+#define pinLedVermelho 13
+
+#define pinLedVerde1 9
+#define pinLedAmarelo1 8 
+#define pinLedVermelho1 7
+
+#define tempoVerd 2000
+#define tempoAmarl 2000
+#define tempoVerm 2000
+
+#define tempoVerde1 2000
+#define tempoAmarelo1 2000
+#define tempoVermelho1 2000
+
+
+unsigned long tempoInicial = 0;
+int faseSemaforo = 0;
+int faseSemaforo1 = 0;
+
+void setup()
+{
+pinMode(pinLedVerde, OUTPUT);
+pinMode(pinLedAmarelo, OUTPUT);
+pinMode(pinLedVermelho, OUTPUT);
+
+pinMode(pinLedVerde1, OUTPUT);
+pinMode(pinLedAmarelo1, OUTPUT);
+pinMode(pinLedVermelho1, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+ unsigned long tempoAtual = millis();
+  
+  if(tempoAtual - tempoInicial >= 1000)
+  {
+   faseSemaforo++;
+   if(faseSemaforo == 10) faseSemaforo = 0;
+   Serial.println(faseSemaforo);
+   tempoInicial = tempoAtual;
+  }
+  switch(faseSemaforo)
+  {
+   case 0:
+   digitalWrite(pinLedAmarelo, LOW);
+   digitalWrite(pinLedVermelho, HIGH);
+   break;
+    
+   case 5:
+   digitalWrite(pinLedVermelho, LOW);
+   digitalWrite(pinLedVerde, HIGH);
+   break;
+    
+   case 8:
+   digitalWrite(pinLedVerde, LOW);
+   digitalWrite(pinLedAmarelo, HIGH);
+    break;
+  }
+ 
+}

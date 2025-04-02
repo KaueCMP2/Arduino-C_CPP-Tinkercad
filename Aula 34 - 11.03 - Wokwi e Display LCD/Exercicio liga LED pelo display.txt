@@ -1,0 +1,46 @@
+//Codigo que liga o led pelo display...
+
+#include <LiquidCrystal_I2C.h> // Biblioteca LCD I2C
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Definição do LCD
+
+const int pinBotao = 8; // Define que o botao esta conectado na porta 8...
+const int pinLedVermelho = 13; // Define que o led esta conectado na porta 13...
+bool estadoAnteriorBotao = LOW; // Armazena o ultimo estado do botao(HIGH ligado, LOW desligado)... 
+bool ledLigado = false; // Indica se o led esta ligado(true) ou desligado(false)...
+
+void setup() {
+  Serial.begin(9600); //velocidade de comunicação com o monitor serial...
+
+
+  lcd.init(); // Inicializa o LCD...
+  lcd.backlight(); // Liga a luz de fundo...
+  
+  // Inicializa pinos
+  pinMode(pinLedVermelho, OUTPUT); // Define pino led vermelho:(Saida)...
+  pinMode(pinBotao, INPUT); // Define pino botao:(Entrada)...
+
+  // Exibe mensagem inicial
+  lcd.setCursor(1, 0); // Onde sera o inicio da mensagem...
+  lcd.print("Aperte o botao"); // Qual sera a mensagem...
+}
+
+void loop() {
+  bool estadoAtualBotao = digitalRead(pinBotao); 
+
+  // Detecta se o botão foi pressionado (transição de HIGH para LOW)
+  if (estadoAnteriorBotao == HIGH && estadoAtualBotao == LOW) {
+    ledLigado = !ledLigado; // Alterna o estado do LED
+    digitalWrite(pinLedVermelho, ledLigado); // Atualiza o LED
+
+    // Atualiza a mensagem no LCD
+    lcd.clear(); // Limpa a mensagem no display
+    lcd.setCursor(5, 0); //indica onde sera o inicio da mensagem
+    if (ledLigado ) {
+      lcd.print("LED ON");
+    } else {
+      lcd.print("LED OFF");
+    }
+  }
+
+  estadoAnteriorBotao = estadoAtualBotao; // Atualiza o estado anterior do botão
+}

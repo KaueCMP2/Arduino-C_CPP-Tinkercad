@@ -1,0 +1,82 @@
+//Cruzamento Farol 
+
+#define pinLedVerde 11
+#define pinLedAmarelo 12
+#define pinLedVermelho 13
+
+#define pinLedVerde1 7
+#define pinLedAmarelo1 8 
+#define pinLedVermelho1 9
+
+#define tempoVerd 3000
+#define tempoAmarl 2000
+#define tempoVerm 5000
+
+#define tempoVerde1 3000
+#define tempoAmarelo1 2000
+#define tempoVermelho1 5000
+
+#define tempoTroca 1000  
+#define tempoTroca1 1000  
+
+unsigned long tempoInicial = 0;
+int faseSemaforo = 0;
+
+void setup()
+{
+pinMode(pinLedVerde, OUTPUT);
+pinMode(pinLedAmarelo, OUTPUT);
+pinMode(pinLedVermelho, OUTPUT);
+
+pinMode(pinLedVerde1, OUTPUT);
+pinMode(pinLedAmarelo1, OUTPUT);
+pinMode(pinLedVermelho1, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+ unsigned long tempoAtual = millis();
+  
+  if(tempoAtual - tempoInicial >= 1000)
+  {
+   faseSemaforo++;
+   if(faseSemaforo == 20) faseSemaforo = 0;
+   Serial.println(faseSemaforo);
+   tempoInicial = tempoAtual;
+  }
+  switch(faseSemaforo)
+  {
+   case 0:
+   digitalWrite(pinLedAmarelo, LOW);
+   digitalWrite(pinLedVermelho, HIGH);
+   break;
+    
+   case 5:
+   digitalWrite(pinLedVermelho, LOW);
+   digitalWrite(pinLedVerde, HIGH);
+   break;
+    
+   case 8:
+   digitalWrite(pinLedVerde, LOW);
+   digitalWrite(pinLedAmarelo, HIGH);
+   break;
+    
+   case 10:
+   digitalWrite(pinLedAmarelo, LOW);
+   digitalWrite(pinLedVermelho, HIGH);
+   digitalWrite(pinLedVerde1, HIGH);
+   break;
+    
+   case 15:
+   digitalWrite(pinLedVerde1, LOW);
+   digitalWrite(pinLedAmarelo1, HIGH);
+   break;
+    
+   case 18:
+   digitalWrite(pinLedAmarelo1, LOW);
+   digitalWrite(pinLedVermelho1, HIGH);
+   break;
+  }
+  
+}

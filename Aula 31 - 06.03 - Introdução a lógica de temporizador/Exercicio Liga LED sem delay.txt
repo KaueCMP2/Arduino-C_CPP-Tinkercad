@@ -1,0 +1,36 @@
+//exercicio Liga LED sem Delay...
+
+#define pinLed_verm 13
+#define pinLed_verd 11
+#define tempoVermelho 1000  // Tempo de piscar (1 segundo)
+#define tempoVerde 1000
+
+unsigned long tempoAtual = 0;  // Inicializa corretamente
+unsigned long tempoInicial_verm = 0;  // Armazena o tempo da última mudança
+unsigned long tempoInicial_verd = 0;  // Armazena o tempo da última mudança
+
+bool estadoLed_verm = false;  // Começa apagado
+bool estadoLed_verd = true; 
+
+void setup() {
+  pinMode(pinLed_verm, OUTPUT);
+  pinMode(pinLed_verd, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  tempoAtual = millis();  
+
+  // Verifica se passou o tempo para piscar o LED
+  if (tempoAtual - tempoInicial_verm >= tempoVermelho){
+  estadoLed_verm = !estadoLed_verm;  // Inverte o estado do LED
+  tempoInicial_verm = millis();  // Atualiza o tempo de referência
+  digitalWrite(pinLed_verm, estadoLed_verm);  // Liga ou desliga o LED vermelho
+ }
+  
+  if (tempoAtual - tempoInicial_verd >= tempoVerde) {
+  estadoLed_verd = !estadoLed_verd;
+  tempoInicial_verd = millis(); 
+  digitalWrite(pinLed_verd, estadoLed_verd);
+ }
+}
