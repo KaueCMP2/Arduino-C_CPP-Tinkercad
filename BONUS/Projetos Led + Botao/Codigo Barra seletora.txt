@@ -1,0 +1,164 @@
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+//define o numero da porta dos leds
+#define pinLed1 13
+#define pinLed2 12
+#define pinLed3 11
+#define pinLed4 10
+
+//define o numero da porta dos botoes
+#define pinBotaoEsq 5
+#define pinBotaoDir 3
+#define pinBotaoConfirm 4
+
+//define a o estado inicial da leitura dos botes como desligados
+static int leituraInicialBtEsq = HIGH;
+static int leituraInicialBtDir = HIGH;
+static int leituraInicialBtConfirm = HIGH;
+
+static int estadoInicialLed1 = false;
+static int estadoInicialLed2 = false;
+static int estadoInicialLed3 = false;
+static int estadoInicialLed4 = false;
+
+//define a variavel posicao incial como 0...
+static int posicao = 0; 
+
+void setup()
+{
+  Serial.begin(9600);
+  
+  //denomina os leds como saida...
+  pinMode(pinLed1, OUTPUT);
+  pinMode(pinLed2, OUTPUT);
+  pinMode(pinLed3, OUTPUT);
+  pinMode(pinLed4, OUTPUT);
+  
+  //denomina botoes como entrada...
+  pinMode(pinBotaoEsq,INPUT_PULLUP);
+  pinMode(pinBotaoDir, INPUT_PULLUP);
+  pinMode(pinBotaoConfirm, INPUT_PULLUP);
+  
+  //inicial display e configura ele ao iniciar...
+  lcd.init();
+  lcd.backlight();
+  
+  //inicia o lcd com os led desligados...
+  lcd.setCursor(0,0);
+  lcd.print("1=0");
+  
+  lcd.setCursor(4,0);
+  lcd.print("2=0");
+
+  lcd.setCursor(8,0);
+  lcd.print("3=0");
+  
+  lcd.setCursor(12,0);
+  lcd.print("4=0");
+  
+  //inicia com a barra seletora na casa 1 da linha 2
+  lcd.setCursor(0,1);
+  lcd.print("___");
+}
+
+void loop()
+{
+  //estado de leitura e na verdade o estado dos botoes...
+  int leitura1 = digitalRead(pinBotaoEsq);
+  int leitura2 = digitalRead(pinBotaoDir);
+  int leitura3 = digitalRead(pinBotaoConfirm);
+  
+  //estado dos leds recebe false... ou seja iniciam desligados...
+  static bool estadoLed1 = estadoInicialLed1;
+  static bool estadoLed2 = estadoInicialLed2;
+  static bool estadoLed3 = estadoInicialLed3;
+  static bool estadoLed4 = estadoInicialLed4;
+  
+  //tratamento botao 1 esquerdo
+  if(leituraInicialBtEsq != leitura1) //se o botao foi clicado...
+  {
+   if(leitura1 == LOW) //e se o estado agora e low/ligado por conta do pullup
+   { 
+    lcd.setCursor(posicao *4, 1); //posiciona o cursor
+    lcd.print("   "); //e apagar a barra de selecao atual 
+     
+    posicao = (posicao == 0) ?3 : posicao -1; //se posicao for 0 recebe 3, se posicao for diferente de 0, entao diminui uma casa...
+     
+    lcd.setCursor(posicao *4, 1); //posiciona  o cursor
+    lcd.print("___"); //e ent imprime a barra de selecao onde o cursor esta
+    Serial.print("Led ");
+    Serial.print(posicao + 1);
+    Serial.println(" selecionado");
+   }
+    leituraInicialBtEsq = leitura1;
+
+  }
+  
+  //tratamento botao 2 direito
+  if(leituraInicialBtDir != leitura2) //se o botao foi clicado...
+  {
+   if(leitura2 == LOW) //e se o estado agora e low/ligado por conta do pullup
+   {
+    lcd.setCursor(posicao *4, 1); //posiciona o cursor
+    lcd.print("   "); //e apagar a barra de selecao atual
+   
+    posicao = (posicao == 3) ?0 : posicao +1; //se posicao for 0 recebe 3, se posicao for diferente de 0, entao diminui uma casa...
+     
+    lcd.setCursor(posicao *4, 1); //posiciona  o cursor
+    lcd.print("___"); // e ent imprime a barra de selecao onde o cursor esta
+    Serial.print("Led ");
+    Serial.print(posicao + 1);
+    Serial.println(" selecionado");
+   }
+    leituraInicialBtDir = leitura2;
+  }
+  
+  //tratamento botao 3 confirmar
+  if(leituraInicialBtConfirm != leitura3) //se o botao 3 foi clicado...
+  {
+   if(leitura3 == LOW) //e se o estado agora e low/ligado por conta do pullup
+   {
+     switch(posicao) //dependendo da posicao estar...
+     {
+     case 0: //no caso 0, se posicao for 0...
+     estadoLed1 = !estadoLed1; //atualiza o estado do led para o contrario, LOGO...
+     digitalWrite(pinLed1, estadoLed1); //o led 1 agora liga ou caso o botao for pressionado denovo, ele desliga...
+     lcd.setCursor(0,0); //na casa 0 da linha 0...
+     lcd.print(estadoLed1 ? "1=#" : "1=0"); //sera impresso o estado do led, se ligado("1=#"), ou desligado("1=#")...
+     Serial.print("Led ");
+     Serial.print(posicao +1);
+     Serial.println(estadoLed1 ?" Ligado" : " Desligado");
+     break;
+     
+     case 1: //no caso 1, se posicao for 1...
+     estadoLed2 = !estadoLed2; //atualiza o estado do led para o estado contrario, LOGO...
+     digitalWrite(pinLed2, estadoLed2); //o led 2 agora liga ou desliga, caso o botao for pressionado...
+     lcd.setCursor(4,0); //na casa 4 da linha 0...
+     lcd.print(estadoLed2 ? "2=#" : "2=0"); //sera impresso o estado do led, se ligado("1=#"), ou desligado("1=#")...
+     Serial.print("Led ");
+     Serial.print(posicao +1);
+     Serial.println(estadoLed2 ?" Ligado" : " Desligado");     break;
+     
+     case 2: //no caso 2, se posicao for 2...
+     estadoLed3 = !estadoLed3; //atualiza o estado do led para o estado contrario, LOGO...
+     digitalWrite(pinLed3, estadoLed3); //o led 3 agora liga ou desliga, caso o botao for pressionado..
+     lcd.setCursor(8,0); //na casa 8 da linha 0...
+     lcd.print(estadoLed3 ? "3=#" : "3=0"); //sera impresso o estado do led, se ligado("1=#"), ou desligado("1=#")...
+     Serial.print("Led ");
+     Serial.print(posicao +1);
+     Serial.println(estadoLed3 ?" Ligado" : " Desligado");     break;
+     
+     case 3: //no caso 3, se posicao for 3...
+     estadoLed4 = !estadoLed4;  //atualiza o estado do led para o estado contrario, LOGO...
+     digitalWrite(pinLed4, estadoLed4); //o led 3 agora liga ou desliga, caso o botao for pressionado..
+     lcd.setCursor(12,0); //na casa 12 da linha 0...
+     lcd.print(estadoLed4 ? "4=#" : "4=0"); //sera impresso o estado do led, se ligado("1=#"), ou desligado("1=#")...
+     Serial.print("Led ");
+     Serial.print(posicao +1);
+     Serial.print(estadoLed4 ?" Ligado" : " Desligado");     break;
+     }
+   }
+    leituraInicialBtConfirm = leitura3;
+  }
+}

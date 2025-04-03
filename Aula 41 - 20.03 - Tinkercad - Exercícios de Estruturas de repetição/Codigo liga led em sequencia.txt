@@ -1,0 +1,46 @@
+// Leds em sequencia
+
+int pinLedBc = 9;
+int pinLedAm = 7;
+int pinLedVm = 4;
+
+int estadoLed[3] = {pinLedBc, pinLedAm, pinLedVm};
+
+void setup()
+{
+  Serial.begin(9600);
+  
+  ;
+  
+  pinMode(estadoLed[3], OUTPUT);
+  
+  for(int k = 0; k < 3; k++)
+  {
+   digitalWrite(pinLedBc, HIGH);
+    Serial.println("LED1 ON");
+    delay(500);
+   digitalWrite(pinLedAm, HIGH);
+    Serial.println("LED2 ON");
+    delay(500);
+   digitalWrite(pinLedVm, HIGH);
+    Serial.println("LED3 ON");
+    delay(500);
+    
+    digitalWrite(pinLedBc, LOW);
+    Serial.println("LED1 OFF");
+    delay(500);
+   digitalWrite(pinLedAm, LOW);
+    Serial.println("LED2 OFF");
+    delay(500);
+   digitalWrite(pinLedVm, LOW);
+    Serial.println("LED3 OFF");
+    delay(500);
+  }
+  
+  
+}
+
+void loop()
+{
+
+}

@@ -1,0 +1,49 @@
+//Liga led com botao
+
+int pinLeds[3] = {9, 7, 4};
+#define botao 3
+
+bool estadoAnterior = 1;
+
+void setup()
+{
+ Serial.begin(1150000);
+  
+  pinMode(botao, INPUT_PULLUP);
+ 
+ for(int k = 0; k < 3; k++) 
+ {
+  pinMode(pinLeds[k], OUTPUT);
+ }
+}
+
+void loop()
+{
+ int estadoBotao = digitalRead(botao);
+  
+ if (estadoBotao != estadoAnterior)
+ {
+  for(int k = 0; k < 3; k++)
+  {
+   Serial.println("Botao pressionado! Ligando LEDs...");
+   digitalWrite(pinLeds[k], HIGH);
+   Serial.print("Led ");
+   Serial.print(k+1);
+   Serial.println(" on...");
+  }
+   delay(1000);
+ }
+
+ if (estadoBotao != estadoAnterior)
+ { 
+  for(int k = 0; k < 3; k++)
+  {
+   Serial.println("Botaoo solto! Desligando LEDs..."); 
+   digitalWrite(pinLeds[k], LOW);
+   Serial.print("Led ");
+   Serial.print(k+1 );
+   Serial.println(" off...");
+  }
+ }
+}
+  

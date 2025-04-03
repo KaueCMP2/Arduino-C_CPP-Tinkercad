@@ -1,0 +1,39 @@
+// C++ code
+int numeros[5] = {1,2,3,4,5}; 
+int numeroProcurado = 5;
+
+void setup()
+{
+ Serial.begin(9600);
+ 
+ bool encontramos = false;
+
+ for(int i = 0; i < 5; i++)
+ {
+  if(numeros[i] == numeroProcurado)
+  {
+    encontramos = true;
+    break; 
+  }
+ }  
+  if(encontramos)
+  {
+   Serial.print("Voce roubou ne? ");
+   Serial.print("como sabia que o ");
+   Serial.print(numeros[5]);
+   Serial.println(" era o numero certo???");
+   Serial.println("LADRAO!!!!!!");
+  }
+  
+  else
+  {
+   Serial.print("HAHAHAHA Errou... ");
+   Serial.print( numeroProcurado);
+   Serial.println(" Nao e uma das opcoes");
+  }
+}
+
+void loop()
+{
+
+}

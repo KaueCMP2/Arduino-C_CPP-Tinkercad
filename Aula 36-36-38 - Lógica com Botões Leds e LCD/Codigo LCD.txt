@@ -1,0 +1,161 @@
+#include <LiquidCrystal_I2C.h> //biblioteca lcd
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+#define pinLed1 10 //pino led 1
+#define pinLed2 9 //pino led 2
+
+const int botao1 = 0;  //botão 1
+const int botao2 = 145; //botão 2
+const int botao3 = 329; //botao 3
+const int botao4 = 505; //botao 4
+const int botao5 = 741; //botão 5
+
+int contagemForcaLed = 0;
+int contagemForcaLed1 = 0;
+int intensidadeLed = 0;
+int intensidadeLed1 = 0;
+
+void setup() {
+    Serial.begin(9600); // Velocidade de comunicação com monitor serial
+    pinMode(pinLed1, OUTPUT);
+    pinMode(pinLed2, OUTPUT);
+  
+    lcd.init(); 
+    lcd.backlight();
+  
+    lcd.setCursor(1, 0); 
+    lcd.print(" Led A OFF");
+  
+    lcd.setCursor(1, 1);
+    lcd.print(" Led B OFF");
+  
+    lcd.setCursor(0, 0); 
+    lcd.print(">");
+  
+    lcd.setCursor(12, 0);
+    lcd.print("0");
+  
+    lcd.setCursor(12, 1);
+    lcd.print("0");
+}
+
+void loop() {   
+    static bool posicao = 0;
+    static bool estadoLedA = false;
+    static bool estadoLedB = false;
+   
+    int leitura = analogRead(A0);
+    static int leituraInicial = 1023;
+
+    // Movimento cima e baixo no LCD
+    if (leituraInicial == 1023 && leitura >= botao1 * 0.9 && leitura <= botao1 * 1.1) {
+        posicao = 0;
+        lcd.setCursor(0, 0);
+        lcd.print(">");      
+        lcd.setCursor(0, 1);
+        lcd.print(" ");
+    }
+   
+    if (leituraInicial == 1023 && leitura >= botao2 * 0.9 && leitura <= botao2 * 1.1) {  
+        posicao = 1;
+        lcd.setCursor(0, 1);
+        lcd.print(">");
+        lcd.setCursor(0, 0);
+        lcd.print(" ");
+    }
+    
+    // Decrementa contagemForcaLed
+    if (leituraInicial == 1023 && leitura >= botao3 * 0.9 && leitura <= botao3 * 1.1) {
+        if (contagemForcaLed >= 10 && contagemForcaLed <= 101 && posicao == 0) {
+            delay(200);
+            contagemForcaLed -= 10;
+            lcd.setCursor(12, 0);
+            lcd.print("   "); // Apaga valores antigos
+            lcd.setCursor(12, 0);
+            lcd.print(contagemForcaLed);
+        }
+    }
+    
+    // Incrementa contagemForcaLed
+    if (leituraInicial == 1023 && leitura >= botao4 * 0.9 && leitura <= botao4 * 1.1) {
+        if (contagemForcaLed >= 0 && contagemForcaLed < 101 && posicao == 0) {
+            delay(200);
+            contagemForcaLed += 10;
+            intensidadeLed += 25;
+            lcd.setCursor(12, 0);
+            lcd.print("   "); // Apaga números antigos
+            lcd.setCursor(12, 0);
+            lcd.print(contagemForcaLed);
+        }
+      // Reseta se passar de 100
+    if (contagemForcaLed >= 101) {
+        contagemForcaLed = 0;
+        intensidadeLed = 0;
+        lcd.setCursor(12, 0);
+        lcd.print("   ");
+        lcd.setCursor(12, 0);
+        lcd.print(contagemForcaLed1);
+    }
+    }
+  
+      // Decrementa contagemForcaLed lnha 1
+    if (leituraInicial == 1023 && leitura >= botao3 * 0.9 && leitura <= botao3 * 1.1) {
+        if (contagemForcaLed1 >= 10 && contagemForcaLed1 <= 101 && posicao == 1) {
+            delay(200);
+            contagemForcaLed1 -= 10;
+            intensidadeLed -= 25;
+            lcd.setCursor(12, 1);
+            lcd.print("   "); // Apaga valores antigos
+            lcd.setCursor(12, 1);
+            lcd.print(contagemForcaLed1);
+        }
+    }
+    
+    // soma contagemForcaLed lnh 1
+    if (leituraInicial == 1023 && leitura >= botao4 * 0.9 && leitura <= botao4 * 1.1) {
+        if (contagemForcaLed1 >= 0 && contagemForcaLed1 < 101 && posicao == 1) {
+            delay(200);
+            contagemForcaLed1 += 10;
+            intensidadeLed1 += 25;
+            lcd.setCursor(12, 1);
+            lcd.print("   "); // Apaga números antigos
+            lcd.setCursor(12, 1);
+            lcd.print(contagemForcaLed1);
+        }
+    }
+
+    // Reseta se passar de 100
+    if (contagemForcaLed1 >= 101) {
+        contagemForcaLed1 = 0;
+        intensidadeLed1 = 0;
+        lcd.setCursor(12, 1);
+        lcd.print("   ");
+        lcd.setCursor(12, 1);
+        lcd.print(contagemForcaLed1);
+    }
+
+    // Liga/Desliga LED A ou B
+    if (leituraInicial == 1023 && leitura >= botao5 * 0.9 && leitura <= botao5 * 1.1) {   
+        if (posicao == 0) {
+            estadoLedA = !estadoLedA;
+            lcd.setCursor(1, 0);
+            if (estadoLedA) {
+                lcd.print(" Led A ON ");
+                analogWrite(pinLed1, intensidadeLed);
+            } else {
+                lcd.print(" Led A OFF ");
+                analogWrite(pinLed1, 0);
+            }
+        } else if (posicao == 1) { 
+            estadoLedB = !estadoLedB;
+            lcd.setCursor(1, 1);
+            if (estadoLedB) {
+                lcd.print(" Led B ON ");
+                analogWrite(pinLed2, intensidadeLed1);
+            } else {
+                lcd.print(" Led B OFF ");
+                analogWrite(pinLed2, 0);
+            }
+        }
+    }
+}
