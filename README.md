@@ -17,14 +17,6 @@
   <li>📦 Materiais de apoio e anotações importantes</li>
 </ul>
 
-<hr>
-
-<blockquote>
-  Este repositório será atualizado conforme novos conteúdos forem sendo desenvolvidos ao longo do curso.
-</blockquote>
-
-<hr>
-
 <h2>📌 Objetivo</h2>
 <ul>
   <li>Um portfólio técnico em constante evolução</li>
