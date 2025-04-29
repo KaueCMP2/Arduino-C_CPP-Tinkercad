@@ -19,14 +19,6 @@
 
 <hr>
 
-<h2>🛠️ Tecnologias e Ferramentas</h2>
-<p>
-  <code>Java</code>, <code>Python</code>, <code>JavaScript</code><br>
-  <code>HTML</code>, <code>CSS</code>, <code>Bootstrap</code><br>
-  <code>MySQL</code>, <code>SQLite</code><br>
-  <code>Git</code>, <code>VS Code</code>, <code>Figma</code>
-</p>
-
 <blockquote>
   Este repositório será atualizado conforme novos conteúdos forem sendo desenvolvidos ao longo do curso.
 </blockquote>
