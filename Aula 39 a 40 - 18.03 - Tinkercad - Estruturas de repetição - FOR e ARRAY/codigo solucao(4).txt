@@ -1,0 +1,36 @@
+// Código em C++
+
+int pinLeds[5] = {8, 7, 6, 5, 4};
+
+void setup()
+{
+  Serial.begin(9600); // Inicia a comunicação serial
+  
+  // Configura os pinos dos LEDs como saída
+  for(int i = 0; i < 5; i++)
+  {
+    pinMode(pinLeds[i], OUTPUT);
+    Serial.println(pinLeds[i]);
+  }
+}
+
+void loop()
+{
+  // Liga todos os LEDs ao mesmo tempo
+  for(int i = 0; i < 5; i++)
+  {
+    digitalWrite(pinLeds[i], HIGH);
+      delay(300); // Mantém os LEDs acesos por 1 segundo
+
+  }
+
+
+  // Desliga todos os LEDs ao mesmo tempo
+  for(int i = 0; i < 5; i++)
+  {
+    digitalWrite(pinLeds[i], LOW);
+    delay(1000); // Mantém os LEDs apagados por 1 segundo
+
+  }
+
+}

@@ -1,0 +1,49 @@
+// solucao 1 a mais dificil e chata...
+
+void setup()
+{
+ Serial.begin(9600);
+}
+
+void loop()
+{
+int valorInicial = 1;
+   Serial.print("O 1º valor e: ");
+  Serial.println(valorInicial);
+  delay(1000);
+  
+int segundoValor = 2;
+  Serial.print("O 2º valor e: ");
+  Serial.println(segundoValor);
+   delay(1000);
+  
+int terceiroValor = valorInicial + segundoValor;
+   Serial.print("O 3º valor e: ");
+  Serial.println(terceiroValor);
+   delay(1000);
+  
+int quartoValor = terceiroValor + segundoValor;
+   Serial.print("O 4º valor e: ");
+  Serial.println(quartoValor);
+   delay(1000);
+  
+int quintoValor = quartoValor + terceiroValor;
+   Serial.print("O 5º valor e: ");
+  Serial.println(quintoValor);
+   delay(1000);
+  
+int sextoValor = quintoValor + quartoValor;
+   Serial.print("O 6º valor e: ");
+  Serial.println(sextoValor);
+   delay(1000);
+  
+int setimoValor = sextoValor + quintoValor;
+   Serial.print("O 7º valor e: ");
+  Serial.println(setimoValor);
+   delay(1000);
+  
+int oitavoValor = setimoValor + sextoValor;
+   Serial.print("O 8º valor e: ");
+  Serial.println(oitavoValor);
+   delay(1000);
+}

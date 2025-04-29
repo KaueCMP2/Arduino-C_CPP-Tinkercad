@@ -1,0 +1,49 @@
+// // Solucao 2 pratica mas nao a melhor
+
+unsigned long valor1 = 0;
+unsigned long valor2 = 1;
+unsigned long resultado;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+ resultado = valor1 + valor2; 
+ Serial.println(resultado);
+ delay(1000);
+  
+  valor1 = valor2;
+  valor2 = resultado;
+  
+  if(resultado >= 21){
+  valor1 = 0;
+  valor2 = 1;
+  }
+}
+
+unsigned long valor1 = 0;
+unsigned long valor2 = 1;
+unsigned long resultado;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+ resultado = valor1 + valor2; 
+ Serial.println(resultado);
+ delay(1000);
+  
+  valor1 = valor2;
+  valor2 = resultado;
+  
+  if(resultado >= 21){
+  valor1 = 0;
+  valor2 = 1;
+  }
+}
